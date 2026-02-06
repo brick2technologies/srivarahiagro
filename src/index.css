@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* ============================= */
+/* GOLDEN GOOSE FONT */
+/* ============================= */
+@font-face {
+  font-family: "Golden-Goose";
+  src: url("./assets/fonts/Golden-Goose.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Golden-Goose";
+  src: url("./assets/fonts/Golden-Goose.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Golden-Goose";
+  src: url("./assets/fonts/Golden-Goose.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Utility class */
+@layer utilities {
+  .font-golden-goose {
+    font-family: "Golden-Goose", ui-sans-serif, system-ui;
+  }
+}
+
+/* ============================= */
+/* BODY FONT (DEFAULT UI FONT) */
+/* ============================= */
+@theme {
+  --font-body: "Spinnaker", system-ui, sans-serif;
+}
+
+/* Default font for the site */
+body,button,a, Link {
+  font-family: var(--font-body);
+}
+
+/* Optional utility if you want to force body font */
+@layer utilities {
+  .font-body {
+    font-family: var(--font-body);
+  }
+}
