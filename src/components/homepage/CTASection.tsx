@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { PhoneCall, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function CTASection() {
     return (
@@ -37,8 +38,8 @@ export default function CTASection() {
                         <div className="flex flex-col sm:flex-row gap-4 shrink-0">
 
                             {/* Primary CTA */}
-                            <a
-                                href="#contact"
+                            <Link
+                                to="/contact"
                                 className="inline-flex items-center justify-center gap-2
                            bg-[#FEFACD] text-[#344C2F]
                            px-7 py-3.5 rounded-full font-semibold
@@ -48,7 +49,7 @@ export default function CTASection() {
                             >
                                 Get Bulk Price Quote
                                 <ArrowRight className="w-5 h-5" />
-                            </a>
+                            </Link>
 
                             {/* Secondary CTA */}
                             <a
