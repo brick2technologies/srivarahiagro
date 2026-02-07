@@ -49,56 +49,123 @@ export default function HeroSection() {
       {/* FLOATING SMALL PADDY (100VH) */}
       {/* ================================================= */}
       <div className="absolute inset-0 h-screen pointer-events-none z-0">
-        {[
-          { src: "/paddy-1.svg", className: "top-16 left-10 w-20", dur: 5, y: -20 },
-          { src: "/paddy-2.svg", className: "top-28 right-12 w-34", dur: 5.5, y: 25 },
-          { src: "/paddy-3.svg", className: "top-1/3 left-20 w-28", dur: 6, y: -30 },
-          { src: "/paddy-4.svg", className: "top-1/3 right-24 w-32", dur: 5.8, y: 32 },
-          { src: "/paddy-5.svg", className: "bottom-32 left-16 w-26", dur: 6.5, y: -24 },
-          { src: "/paddy-6.svg", className: "bottom-28 right-20 w-30", dur: 6, y: 28 },
-          { src: "/paddy-7.svg", className: "bottom-16 right-1/3 w-24", dur: 5.5, y: -20 },
-        ].map((item, i) => (
-          <motion.img
-            key={i}
-            src={item.src}
-            alt=""
-            aria-hidden
-            className={`absolute opacity-70 transform-gpu ${item.className}`}
-            animate={{ y: [0, item.y, 0] }}
-            transition={{
-              duration: item.dur,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
+  {[
+    {
+      src: "/paddy-1.svg",
+      className:
+        "top-16 left-2 md:left-10 w-10 md:w-20",
+      dur: 5,
+      y: -20,
+    },
+    {
+      src: "/paddy-2.svg",
+      className:
+        "top-24 right-2 md:right-12 w-12 md:w-34",
+      dur: 5.5,
+      y: 25,
+    },
+    {
+      src: "/paddy-3.svg",
+      className:
+        "top-1/3 left-2 md:left-20 w-14 md:w-28",
+      dur: 6,
+      y: -30,
+    },
+    {
+      src: "/paddy-4.svg",
+      className:
+        "top-1/3 right-2 md:right-24 w-16 md:w-32",
+      dur: 5.8,
+      y: 32,
+    },
+    {
+      src: "/paddy-5.svg",
+      className:
+        "bottom-32 left-2 md:left-16 w-12 md:w-26",
+      dur: 6.5,
+      y: -24,
+    },
+    {
+      src: "/paddy-6.svg",
+      className:
+        "bottom-28 right-2 md:right-20 w-14 md:w-30",
+      dur: 6,
+      y: 28,
+    },
+    {
+      src: "/paddy-7.svg",
+      className:
+        "bottom-16 right-1 md:right-1/3 w-10 md:w-24",
+      dur: 5.5,
+      y: -20,
+    },
+  ].map((item, i) => (
+    <motion.img
+      key={i}
+      src={item.src}
+      alt=""
+      aria-hidden
+      className={`absolute opacity-70 transform-gpu ${item.className}`}
+      animate={{ y: [0, item.y, 0] }}
+      transition={{
+        duration: item.dur,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    />
+  ))}
+</div>
 
-      {/* ================================================= */}
-      {/* BIG PADDY (50VH + SMOOTH PARALLAX) */}
-      {/* ================================================= */}
-      <div className="absolute inset-0 h-[50vh] pointer-events-none z-0 flex items-center justify-center">
-        <motion.img
-          src="/paddy-6.svg"
-          aria-hidden
-          style={{ y: bigPaddyY1 }}
-          className="absolute w-[360px] md:w-[520px] lg:w-[680px] opacity-45 blur-sm transform-gpu"
-        />
 
-        <motion.img
-          src="/paddy-7.svg"
-          aria-hidden
-          style={{ y: bigPaddyY2 }}
-          className="absolute w-[300px] md:w-[460px] lg:w-[620px] opacity-35 blur-[1px] transform-gpu"
-        />
+     {/* ================================================= */}
+{/* BIG PADDY (50VH + SMOOTH PARALLAX) */}
+{/* ================================================= */}
+<div className="absolute inset-0 h-[40vh] pointer-events-none z-0 flex items-center justify-center">
 
-        <motion.img
-          src="/paddy-8.svg"
-          aria-hidden
-          style={{ y: bigPaddyY3 }}
-          className="absolute w-[280px] md:w-[420px] lg:w-[580px] opacity-40 blur-[1px] transform-gpu"
-        />
-      </div>
+  {/* Center / back layer */}
+  <motion.img
+    src="/paddy-6.svg"
+    aria-hidden
+    style={{ y: bigPaddyY1 }}
+    className="
+      absolute
+      left-1/2 -translate-x-1/2
+      w-[220px] md:w-[520px] lg:w-[680px]
+      opacity-45 blur-sm
+      transform-gpu
+    "
+  />
+
+  {/* Slightly offset middle layer */}
+  <motion.img
+    src="/paddy-7.svg"
+    aria-hidden
+    style={{ y: bigPaddyY2 }}
+    className="
+      absolute
+      left-1/2 -translate-x-1/2
+      w-[200px] md:w-[460px] lg:w-[620px]
+      opacity-35 blur-[1px]
+      transform-gpu
+    "
+  />
+
+  {/* Front subtle layer */}
+  <motion.img
+    src="/paddy-8.svg"
+    aria-hidden
+    style={{ y: bigPaddyY3 }}
+    className="
+      absolute
+      left-1/2 -translate-x-1/2
+      w-[160px] md:w-[420px] lg:w-[580px]
+      opacity-40 blur-[1px]
+      transform-gpu
+    "
+  />
+
+</div>
+
 
       {/* ================================================= */}
       {/* HERO CONTENT (UNCHANGED) */}
