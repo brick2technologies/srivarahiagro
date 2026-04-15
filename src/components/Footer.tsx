@@ -63,6 +63,7 @@ export default function Footer() {
           </div>
 
           {/* Social - Neobrutalist Icon Boxes */}
+          {/* Social - Neobrutalist Icon Boxes */}
           <div className="flex gap-4 justify-center md:justify-end">
             {[
               { icon: Facebook, color: "#1DA6D1" },
@@ -72,8 +73,9 @@ export default function Footer() {
               <a
                 key={social.color}
                 href="#"
-                className="p-3 bg-white border-2 border-[#1A1A1A] shadow-[4px_4px_0px_0px_#1A1A1A] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all rounded-lg"
-                style={{ '--hover-bg': social.color }}
+                // Added hover:bg-[var(--hover-bg)] right before transition-all
+                className="p-3 bg-white border-2 border-[#1A1A1A] shadow-[4px_4px_0px_0px_#1A1A1A] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none hover:bg-[var(--hover-bg)] transition-all rounded-lg"
+                style={{ '--hover-bg': social.color } as React.CSSProperties}
               >
                 <social.icon className="w-6 h-6 text-[#1A1A1A]" strokeWidth={2.5} />
               </a>

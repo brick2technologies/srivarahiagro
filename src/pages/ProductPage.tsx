@@ -37,9 +37,7 @@ export default function ProductsPage() {
           pointer-events-none
           will-change-transform
         "
-        style={{
-          backgroundImage: "url('/product-bg.svg')",
-        }}
+        
       />
 
       {/* PAGE CONTENT */}

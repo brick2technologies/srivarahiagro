@@ -1,125 +1,102 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Home, ShoppingBag, MessageCircle, AlertTriangle } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <section className="relative min-h-screen pt-20 bg-[#FEFACD] flex items-center justify-center px-6 overflow-hidden">
-
-      {/* BACKGROUND SVG */}
-      <div
-        className="
-          absolute inset-0
-          bg-no-repeat
-          bg-cover
-          bg-center
-          opacity-80
-          pointer-events-none
-        "
+    <main className="relative min-h-[100dvh] py-12 bg-[#FCFAF2] flex items-center justify-center px-4 overflow-hidden selection:bg-[#F4D03F]">
+      
+      {/* NEOBRUTALIST GRID BACKGROUND */}
+      <div 
+        className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
         style={{
-          backgroundImage: "url('/404-bg.svg')",
+          backgroundImage: `radial-gradient(#1A1A1A 1.5px, transparent 0)`,
+          backgroundSize: '24px 24px' // Slightly tighter grid
         }}
       />
 
-      {/* CONTENT */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-xl text-center"
-      >
-        {/* 404 */}
-        <h1
-          className="
-            text-[18vw] md:text-[12vw]
-            leading-none
-            font-golden-goose
-            text-[#344C2F]
-            font-extrabold
-          "
+      <div className="relative z-10 w-full max-w-xl text-center flex flex-col items-center">
+        
+        {/* HUGE 404 STICKER - Scaled down for mobile */}
+        <motion.div
+          initial={{ scale: 0.8, rotate: -10, opacity: 0 }}
+          animate={{ scale: 1, rotate: -2, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 200 }}
+          className="inline-block bg-[#F28C28] border-4 md:border-8 border-[#1A1A1A] px-8 py-4 md:px-10 md:py-6 shadow-[8px_8px_0px_0px_#1A1A1A] md:shadow-[12px_12px_0px_0px_#1A1A1A] mb-8"
         >
-          404
-        </h1>
+          <h1 className="text-6xl sm:text-7xl md:text-9xl leading-none font-black text-white italic tracking-tighter [text-shadow:4px_4px_0px_#1A1A1A] md:[text-shadow:8px_8px_0px_#1A1A1A]">
+            404
+          </h1>
+        </motion.div>
 
-        {/* Title */}
-        <h2 className="mt-2 text-2xl md:text-3xl font-golden-goose text-[#344C2F]">
-          Page Not Found
-        </h2>
+        {/* ERROR MESSAGE */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="px-2"
+        >
+          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-[#1A1A1A] mb-3">
+            LOST IN THE <span className="text-[#0F6C3F] underline decoration-4 md:decoration-8 underline-offset-4 md:underline-offset-8">FIELDS?</span>
+          </h2>
+          <p className="text-base md:text-lg font-bold text-[#1A1A1A]/80 max-w-sm mx-auto mb-8 leading-tight md:leading-normal">
+            This page has been harvested or moved. Let's get you back to the good stuff.
+          </p>
+        </motion.div>
 
-        {/* Description */}
-        <p className="mt-3 text-[#344C2F]/80 font-body">
-          The page you’re looking for doesn’t exist or may have been moved.
-        </p>
-
-        {/* Action buttons */}
-        <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+        {/* ACTION BUTTONS - Compact layout */}
+        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-center mb-12">
           <Link
             to="/"
-            className="px-6 py-2.5 rounded-xl bg-[#344C2F] text-[#FEFACD] text-sm hover:opacity-90 transition"
+            className="group flex items-center justify-center gap-2 px-6 py-3.5 bg-[#1DA6D1] text-white border-4 border-[#1A1A1A] rounded-xl font-black uppercase italic shadow-[4px_4px_0px_0px_#1A1A1A] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all text-sm md:text-base"
           >
-            Go Home
+            <Home size={18} strokeWidth={3} /> Go Home
           </Link>
 
           <Link
             to="/products"
-            className="px-6 py-2.5 rounded-xl border border-[#344C2F] text-[#344C2F] text-sm hover:bg-[#344C2F] hover:text-[#FEFACD] transition"
+            className="group flex items-center justify-center gap-2 px-6 py-3.5 bg-[#F4D03F] text-[#1A1A1A] border-4 border-[#1A1A1A] rounded-xl font-black uppercase italic shadow-[4px_4px_0px_0px_#1A1A1A] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all text-sm md:text-base"
           >
-            View Products
+            <ShoppingBag size={18} strokeWidth={3} /> Products
           </Link>
         </div>
 
-        {/* ================= CONTACT CARD ================= */}
-        <div
-          className="
-            mt-10
-            rounded-2xl
-            border border-[#344C2F]/30
-            bg-white
-            p-6
-            shadow-sm
-          "
+        {/* FLOATING HELP BOX - Tighter padding */}
+        <motion.div
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="relative bg-white border-4 border-[#1A1A1A] p-6 md:p-8 rounded-3xl shadow-[8px_8px_0px_0px_#0F6C3F] rotate-1 w-full max-w-md mx-auto"
         >
-          <h3 className="text-lg font-golden-goose text-[#344C2F]">
-            Need Help?
-          </h3>
-
-          <p className="mt-2 text-sm text-[#344C2F]/80 font-body">
-            If you believe this is an error or need assistance, feel free to contact us.
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#1A1A1A] text-white px-4 py-1 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest flex items-center gap-1.5 whitespace-nowrap">
+            <AlertTriangle size={14} className="text-[#F4D03F]" /> Still stuck?
+          </div>
+          
+          <h3 className="text-lg md:text-xl font-black uppercase mb-1 md:mb-2 mt-2">Need a hand?</h3>
+          <p className="text-sm md:text-base font-bold text-[#1A1A1A]/70 mb-5">
+            Our support team is ready to help.
           </p>
 
-          <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3">
             <Link
               to="/contact"
-              className="
-                px-5 py-2.5
-                rounded-xl
-                bg-[#344C2F]
-                text-[#FEFACD]
-                text-sm
-                hover:opacity-90
-                transition
-              "
+              className="flex-1 px-4 py-2.5 border-[3px] md:border-4 border-[#1A1A1A] rounded-xl font-black uppercase text-xs md:text-sm hover:bg-[#1A1A1A] hover:text-white transition-all text-center"
             >
               Contact Us
             </Link>
-
             <a
-              href="https://wa.me/919876543210"
-              className="
-                px-5 py-2.5
-                rounded-xl
-                border border-[#344C2F]
-                text-[#344C2F]
-                text-sm
-                hover:bg-[#344C2F]
-                hover:text-[#FEFACD]
-                transition
-              "
+              href="https://wa.me/91XXXXXXXXXX"
+              className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 bg-[#25D366] text-white border-[3px] md:border-4 border-[#1A1A1A] rounded-xl font-black uppercase text-xs md:text-sm italic hover:translate-x-1 hover:translate-y-1 transition-all"
             >
-              WhatsApp
+              <MessageCircle size={16} fill="currentColor" /> WhatsApp
             </a>
           </div>
-        </div>
-      </motion.div>
-    </section>
+        </motion.div>
+      </div>
+
+      {/* DECORATIVE ACCENTS - Scaled & Repositioned */}
+      <div className="absolute top-12 right-[5%] w-16 h-16 border-[6px] border-[#F4D03F] rounded-full opacity-30 animate-pulse hidden lg:block" />
+      <div className="absolute bottom-12 left-[5%] w-24 h-6 bg-[#0F6C3F] border-4 border-[#1A1A1A] -rotate-12 opacity-30 hidden lg:block" />
+    </main>
   );
 }
