@@ -1,247 +1,113 @@
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-} from "framer-motion";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
-  /* ============================= */
-  /* TEXT ANIMATION (UNCHANGED) */
-  /* ============================= */
-  const container = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.04,
-        delayChildren: 0.15,
-      },
-    },
-  };
-
-  const letter = {
-    hidden: { opacity: 0, y: 18 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  /* ============================= */
-  /* SMOOTH & FAST SCROLL PARALLAX */
-  /* ============================= */
-  const { scrollY } = useScroll();
-
-  // 🔥 Smooth the scroll signal (THIS IS THE BIG FIX)
-  const smoothScrollY = useSpring(scrollY, {
-    stiffness: 120,
-    damping: 20,
-    mass: 0.3,
-  });
-
-  // 🔥 Shorter range = faster response
-  const bigPaddyY1 = useTransform(smoothScrollY, [0, 300], [0, -60]);
-  const bigPaddyY2 = useTransform(smoothScrollY, [0, 300], [0, 80]);
-  const bigPaddyY3 = useTransform(smoothScrollY, [0, 300], [0, -90]);
-
   return (
-    <section className="relative w-full min-h-[150vh] bg-[#344C2F] overflow-hidden">
+    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#E7D7C1]">
 
-      {/* ================================================= */}
-      {/* FLOATING SMALL PADDY (100VH) */}
-      {/* ================================================= */}
-      <div className="absolute inset-0 h-screen pointer-events-none z-0">
-  {[
-    {
-      src: "/paddy-1.svg",
-      className:
-        "top-16 left-2 md:left-10 w-10 md:w-20",
-      dur: 5,
-      y: -20,
-    },
-    {
-      src: "/paddy-2.svg",
-      className:
-        "top-24 right-2 md:right-12 w-12 md:w-34",
-      dur: 5.5,
-      y: 25,
-    },
-    {
-      src: "/paddy-3.svg",
-      className:
-        "top-1/3 left-2 md:left-20 w-14 md:w-28",
-      dur: 6,
-      y: -30,
-    },
-    {
-      src: "/paddy-4.svg",
-      className:
-        "top-1/3 right-2 md:right-24 w-16 md:w-32",
-      dur: 5.8,
-      y: 32,
-    },
-    {
-      src: "/paddy-5.svg",
-      className:
-        "bottom-32 left-2 md:left-16 w-12 md:w-26",
-      dur: 6.5,
-      y: -24,
-    },
-    {
-      src: "/paddy-6.svg",
-      className:
-        "bottom-28 right-2 md:right-20 w-14 md:w-30",
-      dur: 6,
-      y: 28,
-    },
-    {
-      src: "/paddy-7.svg",
-      className:
-        "bottom-16 right-1 md:right-1/3 w-10 md:w-24",
-      dur: 5.5,
-      y: -20,
-    },
-  ].map((item, i) => (
-    <motion.img
-      key={i}
-      src={item.src}
-      alt=""
-      aria-hidden
-      className={`absolute opacity-70 transform-gpu ${item.className}`}
-      animate={{ y: [0, item.y, 0] }}
-      transition={{
-        duration: item.dur,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-    />
-  ))}
-</div>
+      {/* ========================================================= */}
+      {/* 1. BACKGROUND IMAGE - Optimized for the Illustration      */}
+      {/* ========================================================= */}
+      <motion.div
+        className="absolute inset-0 z-0 w-full h-full"
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+      >
+        <img
+          src="/varahi-hero.png"
+          alt="Vintage Farm Landscape Illustration"
+          className="w-full h-full object-cover object-bottom md:object-center brightness-[0.95] contrast-[1.05]"
+        />
+      </motion.div>
 
+      {/* ========================================================= */}
+      {/* 2. SMART GRADIENTS - Ensuring Text Readability            */}
+      {/* ========================================================= */}
+      {/* Top vignette to pull focus to the center */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-transparent via-transparent to-[#2B2621]/30" />
 
-     {/* ================================================= */}
-{/* BIG PADDY (50VH + SMOOTH PARALLAX) */}
-{/* ================================================= */}
-<div className="absolute inset-0 h-[40vh] pointer-events-none z-0 flex items-center justify-center">
+      {/* Bottom heavy gradient to ground the CTA and text */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent via-[#E7D7C1]/20 to-[#2B2621]/40 mix-blend-multiply" />
 
-  {/* Center / back layer */}
-  <motion.img
-    src="/paddy-6.svg"
-    aria-hidden
-    style={{ y: bigPaddyY1 }}
-    className="
-      absolute
-      left-1/2 -translate-x-1/2
-      w-[220px] md:w-[520px] lg:w-[680px]
-      opacity-45 blur-sm
-      transform-gpu
-    "
-  />
+      {/* Paper Texture Overlay to match the illustration style */}
+      <div className="absolute inset-0 z-10 opacity-40 pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]" />
 
-  {/* Slightly offset middle layer */}
-  <motion.img
-    src="/paddy-7.svg"
-    aria-hidden
-    style={{ y: bigPaddyY2 }}
-    className="
-      absolute
-      left-1/2 -translate-x-1/2
-      w-[200px] md:w-[460px] lg:w-[620px]
-      opacity-35 blur-[1px]
-      transform-gpu
-    "
-  />
+      {/* ========================================================= */}
+      {/* 3. HERO CONTENT - Styled for "Vintage Premium" Look      */}
+      {/* ========================================================= */}
+      <div className="relative z-20 px-6 text-center max-w-5xl mx-auto">
 
-  {/* Front subtle layer */}
-  <motion.img
-    src="/paddy-8.svg"
-    aria-hidden
-    style={{ y: bigPaddyY3 }}
-    className="
-      absolute
-      left-1/2 -translate-x-1/2
-      w-[160px] md:w-[420px] lg:w-[580px]
-      opacity-40 blur-[1px]
-      transform-gpu
-    "
-  />
+        {/* Retro Subtitle Badge - Using the Deep Green from the fields */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="inline-block"
+        >
+          <span className="text-[#FCFAF2] font-bold tracking-[0.3em] uppercase text-[10px] md:text-xs bg-[#3E4A3D] px-6 py-2 border-2 border-[#C48C46] shadow-[4px_4px_0px_0px_#C48C46]">
+            Sri Varahi Agro Foods
+          </span>
+        </motion.div>
 
-</div>
+        {/* Main Headline - Using the Sun Gold and Deep Earth Tones */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-8 text-5xl md:text-7xl lg:text-[8rem] font-serif leading-[0.9] tracking-tight
+                     text-[#FCFAF2] 
+                     [-webkit-text-stroke:1px_#3E4A3D] md:[-webkit-text-stroke:2px_#3E4A3D] 
+                     [text-shadow:4px_4px_0px_#3E4A3D] md:[text-shadow:8px_8px_0px_#3E4A3D]"
+        >
+          A pure <span className="italic text-[#C48C46]">harvest</span> <br className="hidden md:block" />
+          for everyone.
+        </motion.h1>
 
+        {/* Description - Semi-opaque background for high-detail areas */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-10 text-lg md:text-2xl text-[#FCFAF2] font-medium tracking-wide max-w-2xl mx-auto 
+                     bg-[#3E4A3D]/40 backdrop-blur-sm py-2 px-4 rounded-sm border-l-4 border-[#C48C46]"
+        >
+          Nutrition is a journey. Take it with confidence directly from heritage farms.
+        </motion.p>
 
-      {/* ================================================= */}
-      {/* HERO CONTENT (UNCHANGED) */}
-      {/* ================================================= */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center pt-32">
-        <div className="text-center px-6 max-w-6xl w-full relative">
-
-          <motion.h1
-            variants={container}
-            initial="hidden"
-            animate="visible"
-            className="text-3xl md:text-5xl lg:text-7xl font-golden-goose text-[#FEFACD] leading-tight"
-          >
-            {"PURE GRAINS.".split("").map((char, i) => (
-              <motion.span
-                key={i}
-                variants={letter}
-                transition={{ duration: 0.45, ease: "easeOut" }}
-                className="inline-block"
+        {/* CTA Button - High contrast against the earthy background */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mt-12 flex justify-center"
+        >
+          <Link to="/contact">
+            <button
+              className="flex items-center gap-2 bg-[#EF8D27] text-[#FCFAF2] text-sm md:text-base font-medium px-8 py-3 rounded-full border-[1.5px] border-[#1A1A1A] shadow-[4px_4px_0px_0px_#1A1A1A] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#1A1A1A] hover:bg-[#F4CE31] hover:text-[#1A1A1A] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
+            >
+              Explore the Harvest
+              <svg
+                width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
               >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
-            <br />
-            {"HONEST NUTRITION.".split("").map((char, i) => (
-              <motion.span
-                key={`b-${i}`}
-                variants={letter}
-                transition={{ duration: 0.45, ease: "easeOut" }}
-                className="inline-block"
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
-          </motion.h1>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </Link>
+        </motion.div>
 
-          <p className="mt-6 text-lg md:text-xl text-[#FEFACD]/80 max-w-3xl mx-auto font-body">
-            Premium quality rices and millets sourced directly from farmers,
-            processed with care, and delivered with trust.
-          </p>
-        </div>
       </div>
 
-      {/* ================================================= */}
-      {/* CATEGORIES BELOW HERO */}
-      {/* ================================================= */}
-      <div className="pb-32 relative z-10">
-        <div className="px-6 max-w-6xl mx-auto">
-          <img
-            src="/categories.png"
-            alt="Rice, Dal and Wheat"
-            className="w-full h-[260px] md:h-[320px] object-contain rounded-2xl mb-16"
-          />
-
-          <p className="text-center text-sm uppercase tracking-widest text-[#FEFACD]/60 mb-8 font-body">
-            Our Categories
-          </p>
-
-          <div className="grid grid-cols-3 gap-3 max-w-4xl mx-auto">
-            {["Rice", "Dal", "Wheat"].map((item) => (
-              <div
-                key={item}
-                className="border border-[#FEFACD]/30 rounded-xl p-8 text-center backdrop-blur-sm hover:bg-[#FEFACD]/10 transition"
-              >
-                <h3 className="text-xl font-golden-goose text-[#FEFACD]">
-                  {item}
-                </h3>
-                <p className="mt-2 text-sm text-[#FEFACD]/70 font-body">
-                  Premium quality grains
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-    </section>
+      {/* Subtle Scroll Indicator */}
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-8 z-20 text-[#3E4A3D] font-bold text-xs tracking-widest uppercase opacity-60"
+      >
+        Scroll to discover
+      </motion.div>
+    </div>
   );
 }

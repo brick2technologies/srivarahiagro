@@ -4,100 +4,95 @@ import { Wheat, ShieldCheck, Factory, Truck, Users } from "lucide-react";
 const whyChooseUs = [
   {
     icon: Wheat,
-    title: "Premium Quality Rice",
-    description:
-      "Carefully sourced paddy and precision milling ensure superior grain quality.",
+    title: "Premium Quality",
+    description: "Carefully sourced paddy and precision milling for superior grains.",
+    color: "#0F6C3F", // Logo Green
   },
   {
     icon: Factory,
-    title: "Modern Milling Facility",
-    description:
-      "Advanced machinery delivers hygienic processing and uniform grain size.",
+    title: "Modern Milling",
+    description: "Advanced machinery delivers hygienic processing and uniform size.",
+    color: "#1DA6D1", // Logo Blue
   },
   {
     icon: ShieldCheck,
-    title: "Strict Quality Control",
-    description:
-      "Multiple quality checks maintain consistency across every batch.",
+    title: "Strict Quality",
+    description: "Multiple checks maintain consistency across every single batch.",
+    color: "#F28C28", // Logo Orange
   },
   {
     icon: Truck,
-    title: "Reliable Supply Chain",
-    description:
-      "Efficient logistics enable timely delivery for bulk and wholesale orders.",
+    title: "Reliable Supply",
+    description: "Efficient logistics enable timely delivery for bulk wholesale.",
+    color: "#0F6C3F", // Logo Green
   },
   {
     icon: Users,
-    title: "Trusted by Traders",
-    description:
-      "Long-term partnerships with traders and distributors across regions.",
+    title: "Trusted Partner",
+    description: "Long-term partnerships with traders across multiple regions.",
+    color: "#F4D03F", // Logo Yellow
   },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-20 bg-[#FEFACD]">
+    <section className="py-24 bg-[#FCFAF2]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
-        {/* Heading */}
+        {/* Heading - Bold Neobrutalist Style */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-14"
+          className="text-center mb-16"
         >
-          <h2 className="text-2xl md:text-4xl font-bold text-[#344C2F] mb-4 font-golden-goose">
-            WHY CHOOSE SRI VARAHI AGRO?
+          <span className="bg-[#F28C28] text-white px-4 py-1 rounded-full border-[1.5px] border-[#1A1A1A] shadow-[3px_3px_0px_0px_#1A1A1A] text-xs font-bold uppercase tracking-widest mb-4 inline-block">
+            Our Promise
+          </span>
+          <h2 className="text-4xl md:text-6xl font-serif font-bold text-[#1A1A1A] mt-4 [text-shadow:3px_3px_0px_#1DA6D1]">
+            WHY CHOOSE US?
           </h2>
-          <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
-            Consistent quality, trusted processes, and reliable supply
-          </p>
         </motion.div>
 
-        {/* Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-8">
+        {/* Cards Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {whyChooseUs.map((item, index) => {
             const Icon = item.icon;
+            // Determine text color based on background brightness (Yellow card needs dark text)
+            const isLightBg = item.color === "#F4D03F";
+
             return (
               <motion.div
                 key={index}
-                className="h-full"               
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-                whileHover={{ y: -6 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                whileHover={{ y: -10, rotate: index % 2 === 0 ? 1 : -1 }}
+                className="h-full cursor-default"
               >
                 <div
-                  className="h-full flex flex-col justify-between   /* 🔥 2 */
-                             bg-[#344C2F] rounded-2xl p-6 text-center
-                             shadow-md hover:shadow-xl transition-all duration-300"
+                  style={{ backgroundColor: item.color }}
+                  className={`h-full flex flex-col items-center p-8 text-center border-2 border-[#1A1A1A] rounded-2xl shadow-[6px_6px_0px_0px_#1A1A1A] transition-all duration-300`}
                 >
-
-                  {/* Icon */}
-                  <div className="w-14 h-14 mx-auto mb-4 rounded-full
-                                  bg-[#FEFACD] flex items-center justify-center">
-                    <Icon className="w-7 h-7 text-[#344C2F]" />
+                  {/* Icon Circle */}
+                  <div className={`w-16 h-16 rounded-full border-2 border-[#1A1A1A] flex items-center justify-center mb-6 shadow-[3px_3px_0px_0px_#1A1A1A] ${isLightBg ? 'bg-[#1A1A1A]' : 'bg-[#FCFAF2]'}`}>
+                    <Icon className={`w-8 h-8 ${isLightBg ? 'text-white' : 'text-[#1A1A1A]'}`} />
                   </div>
 
                   {/* Text Content */}
-                  <div className="flex-grow flex flex-col justify-center"> {/* 🔥 3 */}
-                    <h3 className="text-lg font-semibold text-[#FEFACD] mb-2">
-                      {item.title}
-                    </h3>
+                  <h3 className={`text-xl font-bold mb-4 uppercase leading-tight ${isLightBg ? 'text-[#1A1A1A]' : 'text-white'}`}>
+                    {item.title}
+                  </h3>
 
-                    <p className="text-sm text-[#FEFACD]/90 leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-
+                  <p className={`text-sm font-medium leading-relaxed ${isLightBg ? 'text-[#1A1A1A]/80' : 'text-white/90'}`}>
+                    {item.description}
+                  </p>
                 </div>
               </motion.div>
             );
           })}
         </div>
-
       </div>
     </section>
   );

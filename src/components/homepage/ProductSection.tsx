@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function ProductsSection() {
   const products = [
@@ -14,61 +15,70 @@ export default function ProductsSection() {
   ];
 
   return (
-    <section className="w-full bg-[#FEFACD] py-16">
+    <section className="w-full bg-[#FCFAF2] py-20">
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* Header */}
-        <div className="text-center mb-12 font-golden-goose">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#344C2F]">
+        {/* Header - Using Logo Blue & Orange accents */}
+        <div className="text-center mb-16">
+          <motion.span 
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="inline-block bg-[#1DA6D1] text-white px-5 py-1.5 rounded-full border-[1.5px] border-[#1A1A1A] shadow-[3px_3px_0px_0px_#1A1A1A] text-xs font-bold uppercase tracking-[0.2em] mb-4"
+          >
+            Premium Selection
+          </motion.span>
+          <h2 className="text-4xl md:text-6xl font-serif font-bold text-[#1A1A1A] [text-shadow:3px_3px_0px_#F28C28]">
             OUR RICE VARIETIES
           </h2>
-          <p className="mt-3 text-gray-700">
-            Premium quality rice sourced and processed with care
-          </p>
+          <div className="h-1.5 w-24 bg-[#F4D03F] mx-auto mt-4 border border-[#1A1A1A] rounded-full shadow-[2px_2px_0px_0px_#1A1A1A]" />
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {products.map((product) => (
-            <div
+            <motion.div
               key={product.slug}
-              className="group bg-[#344C2F] rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden"
+              whileHover={{ y: -8 }}
+              className="group bg-[#0F6C3F] rounded-2xl border-2 border-[#1A1A1A] shadow-[8px_8px_0px_0px_#1A1A1A] overflow-hidden flex flex-col"
             >
-              {/* Image */}
-              <Link to={`/products/${product.slug}`}>
-                <div className="h-40 md:h-48 lg:h-56 overflow-hidden">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="h-full w-full object-cover group-hover:scale-105 transition duration-500"
-                  />
+              {/* Image Container - Using Logo Blue for the bottom border */}
+              <Link to={`/products/${product.slug}`} className="relative h-64 overflow-hidden border-b-2 border-[#1A1A1A]">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="h-full w-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-110 transition duration-700"
+                />
+                {/* Floating Badge - Using Logo Yellow */}
+                <div className="absolute top-4 right-4 bg-[#F4D03F] text-[#1A1A1A] text-[10px] font-black px-4 py-1.5 rounded-full border-[1.5px] border-[#1A1A1A] shadow-[3px_3px_0px_0px_#1A1A1A]">
+                  TOP GRADE
                 </div>
               </Link>
 
               {/* Content */}
-              <div className="p-5 text-center">
-                {/* ✅ Name as Link */}
+              <div className="p-8 flex flex-col items-center flex-grow">
                 <Link to={`/products/${product.slug}`}>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-[#FEFACD] font-body hover:underline">
+                  <h3 className="text-2xl md:text-3xl font-serif font-bold text-white group-hover:text-[#F4D03F] transition-colors text-center uppercase tracking-tight">
                     {product.name}
                   </h3>
                 </Link>
 
-                {/* ✅ Button as Link */}
-                <Link to={`/products/${product.slug}`}>
-                  <button
-                    className="mt-4 px-6 py-2 text-sm font-medium text-[#344C2F]
-                               bg-[#FEFACD] rounded-full
-                               hover:bg-[#2c4028] transition hover:text-[#FEFACD]"
-                  >
-                    View Varieties
-                  </button>
-                </Link>
+                <div className="mt-auto w-full pt-8">
+                  <Link to={`/products/${product.slug}`} className="block">
+                    <button
+                      className="w-full flex justify-center items-center gap-3 bg-[#F28C28] text-white font-black uppercase tracking-widest py-4 rounded-full border-[2px] border-[#1A1A1A] shadow-[5px_5px_0px_0px_#1A1A1A] hover:bg-[#F4D03F] hover:text-[#1A1A1A] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[3px_3px_0px_0px_#1A1A1A] active:translate-x-[5px] active:translate-y-[5px] active:shadow-none transition-all duration-150"
+                    >
+                      View Variety
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </button>
+                  </Link>
+                </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );
